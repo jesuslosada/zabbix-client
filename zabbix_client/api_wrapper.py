@@ -196,7 +196,7 @@ class ZabbixObject(object):
                 raise ValueError('JSON-RPC 2.0 does not allow both ' +
                                  'positional and keyword arguments')
 
-            method = '{0}.{1}'.format(self.name, name).lower()
+            method = '{0}.{1}'.format(self.name, name)
             params = args or kwargs or None
             return self.server_proxy.call(method, params=params)
 
