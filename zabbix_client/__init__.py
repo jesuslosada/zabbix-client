@@ -10,12 +10,14 @@ Zabbix objects (like hosts, items, graphs and others) through the
 JSON-RPC 2.0 protocol.
 
 Zabbix API documentation:
-https://www.zabbix.com/documentation/1.8/api/getting_started
-https://www.zabbix.com/documentation/2.2/manual/api
-https://www.zabbix.com/documentation/2.2/manual/api/reference
+
+* https://www.zabbix.com/documentation/1.8/api/getting_started
+* https://www.zabbix.com/documentation/2.2/manual/api
+* https://www.zabbix.com/documentation/2.2/manual/api/reference
 
 JSON-RPC 2.0 specification:
-http://www.jsonrpc.org/specification
+
+* http://www.jsonrpc.org/specification
 
 Usage
 -----
