@@ -2,7 +2,7 @@
 
 """
 zabbix-client
-~~~~~~~~~~~~~
+=============
 
 zabbix-client is a Zabbix API wrapper written in Python. Zabbix API was
 introduced in Zabbix 1.8 and allows you to create, update and fetch
@@ -16,6 +16,29 @@ https://www.zabbix.com/documentation/2.2/manual/api/reference
 
 JSON-RPC 2.0 specification:
 http://www.jsonrpc.org/specification
+
+Usage
+-----
+
+Calling a method that does not require authentication::
+
+    >>> from zabbix_client import ZabbixServerProxy
+    >>> s = ZabbixServerProxy('http://localhost/zabbix')
+    >>> s.apiinfo.version()
+    '2.0.12'
+
+Calling a method that requires previous authentication::
+
+    >>> from zabbix_client import ZabbixServerProxy
+    >>> s = ZabbixServerProxy('http://localhost/zabbix')
+    >>> s.user.login(user='Admin', password='zabbix')
+    '44cfb35933e3e75ef51988845ab15e8b'
+    >>> s.host.get(output=['hostid', 'host'])
+    [{'host': 'Zabbix server', 'hostid': '10084'},
+        {'host': 'Test', 'hostid': '10085'}]
+    >>> s.user.logout()
+    True
+
 """
 
 __version__ = '0.1.0'
