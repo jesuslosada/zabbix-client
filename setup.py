@@ -25,6 +25,9 @@ setup(
     url='https://github.com/jlosadadev/zabbix-client',
     license='Apache 2.0',
     packages=['zabbix_client'],
+    extras_require={
+        'requests': ['requests>=2.2.0']
+    },
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
