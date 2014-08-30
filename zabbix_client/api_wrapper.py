@@ -41,13 +41,13 @@ except ImportError:
 
 from . import __version__
 from .exceptions import (
-    ZabbixClientError, TransportError, TimeoutError, HTTPError, ResponseError,
+    TransportError, TimeoutError, HTTPError, ResponseError,
     ContentDecodingError, InvalidJSONError, JSONRPCError
 )
 
 
 # Default network timeout (in seconds)
-DEFAULT_TIMEOUT = 30
+NETWORK_TIMEOUT = 30
 
 logger = logging.getLogger(__name__)
 
@@ -176,8 +176,6 @@ class ZabbixServerProxy(object):
     def _logout(self, method, params=None):
         try:
             result = self._call(method, params=params, auth=self._auth_token)
-        except ZabbixClientError:
-            raise
         finally:
             self._auth_token = None
 
@@ -210,7 +208,7 @@ class ZabbixObject(object):
 
 class Transport(object):
 
-    def __init__(self, timeout=DEFAULT_TIMEOUT):
+    def __init__(self, timeout=NETWORK_TIMEOUT):
         self.timeout = timeout
 
     def request(self, rpc_request):
@@ -310,9 +308,9 @@ class UrllibTransport(Transport):
             if not gzip:
                 raise ValueError('gzip is not available')
 
-            b = BytesIO(content)
+            buf = BytesIO(content)
             try:
-                content = gzip.GzipFile(mode='rb', fileobj=b).read()
+                content = gzip.GzipFile(mode='rb', fileobj=buf).read()
             except IOError as e:
                 raise ContentDecodingError(e)
 
