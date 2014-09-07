@@ -2,7 +2,7 @@
 
 import socket
 from .exceptions import TransportError, TimeoutError
-from .zabbix_protocol import NETWORK_TIMEOUT, ZabbixProtocol
+from .zabbix_protocol import NETWORK_TIMEOUT, ZabbixProtocolConnection
 
 
 def dumps(key):
@@ -29,20 +29,20 @@ class ZabbixGetter(object):
         address = (self.host, self.port)
         connection = None
         try:
-            connection = ZabbixProtocol.create_connection(
+            connection = ZabbixProtocolConnection(
                 address,
                 timeout=self.timeout,
                 source_address=self.source_address
             )
 
             try:
-                connection.sendall(dumps(key))
+                connection.send(dumps(key), raw_value=True)
             except socket.timeout as e:
                 raise TimeoutError(e)
             except socket.error as e:
                 raise TransportError(e)
 
-            return loads(ZabbixProtocol.recv(connection))
+            return loads(connection.recv())
         finally:
             if connection:
                 connection.close()

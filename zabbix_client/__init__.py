@@ -52,9 +52,11 @@ __copyright__ = 'Copyright 2014 Jesús Losada Novo'
 from .api_wrapper import (
     ZabbixServerProxy, Transport, RequestsTransport, UrllibTransport
 )
+from .sender import ZabbixSender
+from .getter import ZabbixGetter
 from .exceptions import (
     ZabbixClientError, TransportError, TimeoutError, HTTPError, ResponseError,
-    ContentDecodingError, InvalidJSONError, JSONRPCError
+    ContentDecodingError, InvalidJSONError, JSONRPCError, ZabbixProtocolError
 )
 
 

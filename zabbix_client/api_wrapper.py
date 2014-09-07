@@ -49,6 +49,8 @@ from .exceptions import (
 # Default network timeout (in seconds)
 NETWORK_TIMEOUT = 30
 
+ZBX_API_HANDLER = '/api_jsonrpc.php'
+
 logger = logging.getLogger(__name__)
 
 
@@ -116,9 +118,7 @@ def loads(response):
 class ZabbixServerProxy(object):
 
     def __init__(self, url, transport=None):
-        self.url = url if not url.endswith('/') else url[:-1]
-        self.url += '/api_jsonrpc.php'
-
+        self.url = url.rstrip('/') + ZBX_API_HANDLER
         logger.debug("Zabbix server URL: {0}".format(self.url))
 
         if transport is not None:

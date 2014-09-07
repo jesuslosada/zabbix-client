@@ -29,3 +29,10 @@ class JSONRPCError(ZabbixClientError):
         self.data = kwargs.pop('data', None)
 
         super(JSONRPCError, self).__init__(*args, **kwargs)
+
+class ZabbixProtocolError(ZabbixClientError):
+
+    def __init__(self, *args, **kwargs):
+        self.response = kwargs.pop('response', None)
+
+        super(ZabbixProtocolError, self).__init__(*args, **kwargs)

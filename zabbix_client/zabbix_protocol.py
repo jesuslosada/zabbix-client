@@ -34,10 +34,17 @@ class ZabbixProtocol(object):
         except (socket.error, socket.gaierror) as e:
             raise TransportError(e)
 
+    @staticmethod
+    def close_connection(connection):
+        connection.close()
+
     @classmethod
-    def send(cls, sock, data):
-        data_len = struct.pack('<Q', len(data))
-        zabbix_request = cls.ZBX_TCP_HEADER + data_len + data
+    def send(cls, sock, data, raw_value=False):
+        if raw_value:
+            zabbix_request = data
+        else:
+            data_len = struct.pack('<Q', len(data))
+            zabbix_request = cls.ZBX_TCP_HEADER + data_len + data
 
         try:
             sock.sendall(zabbix_request)
@@ -72,3 +79,26 @@ class ZabbixProtocol(object):
             raise TimeoutError(e)
         except socket.error as e:
             raise TransportError(e)
+
+
+class ZabbixProtocolConnection(object):
+
+    def __init__(self, address, timeout=None, source_address=None):
+        self.address = address
+        self.timeout = timeout
+        self.source_address = source_address
+
+        self._socket = ZabbixProtocol.create_connection(
+            self.address,
+            timeout=self.timeout,
+            source_address=self.source_address
+        )
+
+    def send(self, data, raw_value=False):
+        ZabbixProtocol.send(self._socket, data, raw_value=raw_value)
+
+    def recv(self):
+        return ZabbixProtocol.recv(self._socket)
+
+    def close(self):
+        ZabbixProtocol.close_connection(self._socket)
