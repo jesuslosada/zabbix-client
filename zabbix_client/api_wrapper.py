@@ -258,7 +258,7 @@ class RequestsTransport(Transport):
             content = response.content
         except requests.Timeout as e:
             raise TimeoutError(e)
-        except requests.ContentDecodingError as e:
+        except requests.exceptions.ContentDecodingError as e:
             raise ContentDecodingError(e)
         except requests.HTTPError as e:
             raise HTTPError(e)
