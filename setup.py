@@ -22,7 +22,7 @@ setup(
     long_description=long_description,
     author='Jesús Losada Novo',
     author_email='jlosadadev@gmail.com',
-    url='https://github.com/jlosadadev/zabbix-client',
+    url='https://github.com/jesuslosada/zabbix-client',
     license='Apache 2.0',
     packages=['zabbix_client'],
     extras_require={
