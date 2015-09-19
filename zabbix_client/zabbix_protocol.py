@@ -3,6 +3,7 @@
 import socket
 import struct
 import sys
+
 from .exceptions import TransportError, TimeoutError, ResponseError
 from .utils import recv_bytes
 

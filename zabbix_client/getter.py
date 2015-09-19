@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import socket
+
 from .exceptions import TransportError, TimeoutError
 from .zabbix_protocol import NETWORK_TIMEOUT, ZabbixProtocolConnection
 

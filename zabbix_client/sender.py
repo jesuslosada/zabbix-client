@@ -4,6 +4,7 @@ import socket
 import json
 import re
 import logging
+
 from .exceptions import (
     TransportError, TimeoutError, ResponseError, InvalidJSONError,
     ZabbixProtocolError
