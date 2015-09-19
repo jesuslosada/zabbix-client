@@ -17,7 +17,7 @@ long_description = readme + '\n\n' + changes
 
 setup(
     name='zabbix-client',
-    version='0.1.0',
+    version='0.1.1',
     description='Zabbix API wrapper',
     long_description=long_description,
     author='Jesús Losada Novo',
