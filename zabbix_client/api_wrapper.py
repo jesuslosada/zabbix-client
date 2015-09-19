@@ -213,7 +213,7 @@ class Transport(object):
     def __init__(self, timeout=DEFAULT_TIMEOUT):
         self.timeout = timeout
 
-    def request(self, rpc_request):
+    def request(self, url, rpc_request):
         raise NotImplementedError
 
     @staticmethod
