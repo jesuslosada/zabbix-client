@@ -43,10 +43,10 @@ Calling a method that requires previous authentication::
 
 """
 
-__version__ = '0.1.0'
+__version__ = '0.1.1'
 __author__ = 'Jesús Losada Novo'
 __license__ = 'Apache 2.0'
-__copyright__ = 'Copyright 2014 Jesús Losada Novo'
+__copyright__ = 'Copyright 2014-2015 Jesús Losada Novo'
 
 
 from .api_wrapper import (

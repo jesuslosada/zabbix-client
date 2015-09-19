@@ -211,7 +211,7 @@ class Transport(object):
     def __init__(self, timeout=NETWORK_TIMEOUT):
         self.timeout = timeout
 
-    def request(self, rpc_request):
+    def request(self, url, rpc_request):
         raise NotImplementedError
 
     @staticmethod
@@ -256,7 +256,7 @@ class RequestsTransport(Transport):
             content = response.content
         except requests.Timeout as e:
             raise TimeoutError(e)
-        except requests.ContentDecodingError as e:
+        except requests.exceptions.ContentDecodingError as e:
             raise ContentDecodingError(e)
         except requests.HTTPError as e:
             raise HTTPError(e)
