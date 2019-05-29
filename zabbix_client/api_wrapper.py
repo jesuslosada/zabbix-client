@@ -61,6 +61,9 @@ def dumps(id_, method, params=None, auth=None):
 
     if params is not None:
         rpc_request['params'] = params
+    else:
+        # Zabbix 3 and later versions fail if 'params' is omitted
+        rpc_request['params'] = {}
     if auth is not None:
         rpc_request['auth'] = auth
 
