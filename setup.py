@@ -10,19 +10,14 @@ except ImportError:
 with open('README.rst') as f:
     readme = f.read()
 
-with open('CHANGES.rst') as f:
-    changes = f.read()
-
-long_description = readme + '\n\n' + changes
-
 setup(
     name='zabbix-client',
-    version='0.1.1',
+    version='0.1.2',
     description='Zabbix API wrapper',
-    long_description=long_description,
+    long_description=readme,
     author='Jesús Losada Novo',
-    author_email='jlosadadev@gmail.com',
-    url='https://github.com/jlosadadev/zabbix-client',
+    author_email='dev@jesuslosada.com',
+    url='https://github.com/jesuslosada/zabbix-client',
     license='Apache 2.0',
     packages=['zabbix_client'],
     extras_require={
